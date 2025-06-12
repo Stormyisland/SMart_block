@@ -36,6 +36,9 @@ class Blockchain:
 
     def deploy contract(self, code, sender):
         contract_id = str(uuid4())
+        self.contracts[contract_id] ={
+            'code': code,
+            
     
             
     
