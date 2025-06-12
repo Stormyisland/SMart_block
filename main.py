@@ -53,6 +53,34 @@ class Blockchain:
             'state' : contract['state'],
             'caller' : caller,
             'args' : args,
+            'contract' : contract
+        }
+
+        try:
+            #Extract function from contract code
+            exec(contract['code'], env)
+            if function_name in env:
+                #Execute contract function
+                env[function_name]()
+                return True
+        except Exception as e:
+            print(f"Contract exectution failed: {str(e)}")
+        return False
+
+    @property
+    def last_block(self):
+        return self.chain[-1]
+
+    @staticmethod 
+    def hash(block):
+        block_string = json.dumps(block, sort_keys= True).encode()
+        return hasshlib.sha256(block_string).hexdigest()
+
+    def proof_of_work(self, last_proof):
+        proof + 0
+        while self.valid_proof(last_proof, proof) is false:
+            proof += 1
+            return proof
 
 
 
