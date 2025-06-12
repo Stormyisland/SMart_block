@@ -92,6 +92,35 @@ class Blockchain:
 if __name__ == "__main__":
     blockchain = blockchain()
 
+    # Deploy a smart contract 
+    simple_storage_contract = """
+def get_value():
+    # Normally you'd return this, but simplified 
+    print(f"Stored value: {state['value']}")
+"""
+    contract_id = blockchain.deploy_contract(simple_storage_contract, "Alice")
+
+    # Execute contract function
+    blockchain.new_transaction(
+            sender = "Bob",
+        recipent="",
+        amount=0,
+        contract_id=contract_id,
+        function="store_value",
+        args=[42]
+        )
+
+# Mine block to include transactions 
+last_block = blockchain.last_block
+last_proof = last_block['proof']
+proof = blockchain.proof_of_work(last_proof)
+blockchain.new_block(proof)
+
+# Execute read operation (simulated
+blockchain.execute_contract_id, "get value", [], "Alice")
+
+
+
 
             
             
