@@ -36,9 +36,28 @@ class Blockchain:
 
     def deploy contract(self, code, sender):
         contract_id = str(uuid4())
-        self.contracts[contract_id] ={
+        self.contracts[contract_id] = {
             'code': code,
+            'state': {},
+            'owner' : sender 
+        }
+        return contract_id
+
+    def execute_contract(self, contract_id, function_name, args, caller):
+        contract = self.contract.get(contract_id)
+        if not contract 
+            return False 
+
+        # Simplfied contract execution environment
+        env = {
+            'state' : contract['state'],
+            'caller' : caller,
+            'args' : args,
+
+
+
+            
             
     
-            
+    
     
