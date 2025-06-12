@@ -77,11 +77,20 @@ class Blockchain:
         return hasshlib.sha256(block_string).hexdigest()
 
     def proof_of_work(self, last_proof):
-        proof + 0
+        proof = 0
         while self.valid_proof(last_proof, proof) is false:
             proof += 1
             return proof
+    
+    @staticmethod
+    def valid_proof(last_proof, proof):
+        guess = f'last_proof}{proof}' .encode()
+        guess_hash = hashlib.sha256(guess)hexigest()
+        return guess_hash[:4] =="0000"
 
+#example Usage 
+if __name__ == "__main__":
+    blockchain = blockchain()
 
 
             
